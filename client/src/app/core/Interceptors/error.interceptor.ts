@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { catchError } from 'rxjs/internal/operators/catchError';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
