@@ -1,3 +1,4 @@
+import { BasketService } from './../../basket/basket.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/models/product';
 import { ShopService } from '../shop.service';
@@ -11,16 +12,32 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 })
 export class ProductDetailsComponent implements OnInit {
   product: IProduct;
+  quantity = 1;
   constructor(
     private shopService: ShopService,
     private actionRoute: ActivatedRoute,
-    private bcService: BreadcrumbService
+    private bcService: BreadcrumbService,
+    private basketService: BasketService
   ) {
     this.bcService.set('@productDetails', ''); // 131 while loading  product id show untill load test of product in title
   }
 
   ngOnInit(): void {
     this.loadProduct();
+  }
+
+  addItemToBasket() {
+    this.basketService.addItemToBasket(this.product, this.quantity); // 157
+  }
+
+  incrementQuantity() {
+    this.quantity++;
+  }
+
+  decrementQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   }
 
   loadProduct() {
