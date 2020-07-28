@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using API.Dtos;
+using AutoMapper;
 using Core.Entity;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -8,30 +10,35 @@ namespace API.Controllers
     public class BasketController : BaseApiController // 139
     {
         private readonly IBasketRepository _basketRepository;
-        public BasketController(IBasketRepository basketRepository)
+        private readonly IMapper _mapper;
+        public BasketController(IBasketRepository basketRepository, IMapper mapper) // 182 for mapper
         {
+            _mapper = mapper;
             _basketRepository = basketRepository;
         }
 
-         [HttpGet]
-         public async Task<ActionResult<CustomerBasket>> GetBasketById(string id){
+        [HttpGet]
+        public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
+        {
 
-             var basket = await _basketRepository.GetBasketAsync(id);
+            var basket = await _basketRepository.GetBasketAsync(id);
 
-             return Ok(basket ?? new CustomerBasket(id));
-         }
+            return Ok(basket ?? new CustomerBasket(id));
+        }
 
-         [HttpPost]
-         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket){
+        [HttpPost]
+        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
+        {
+        var customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket); // automatically map attribute of class (same name)
+            var updateBasket = await _basketRepository.UpdateBasketAsync(customerBasket);
+            return Ok(updateBasket);
+        }
 
-             var updateBasket = await _basketRepository.UpdateBasketAsync(basket);
-             return Ok(updateBasket);
-         }
+        [HttpDelete]
+        public async Task DeleteBasketAsync(string id)
+        {
 
-         [HttpDelete]
-         public async Task DeleteBasketAsync(string id){
-
-             await _basketRepository.DeleteBasketAsync(id);
-         }
+            await _basketRepository.DeleteBasketAsync(id);
+        }
     }
 }
