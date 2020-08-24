@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     CommonModule,
     RouterModule,
     BreadcrumbModule,
+    SharedModule, // navbar module is inside core module so shared module need to have inside core module 194
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
