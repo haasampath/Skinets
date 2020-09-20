@@ -3,7 +3,7 @@ using AutoMapper;
 using Core.Entity;
 using Core.Entity.Identity;
 using Core.Entity.OrderAggregate;
-using Address = Core.Entity.Identity.Address;
+
 
 namespace API.Helpers
 {
@@ -15,8 +15,7 @@ namespace API.Helpers
             .ForMember(d => d.ProductBrand, o => o.MapFrom(s => s.ProductBrand.Name))
             .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
             .ForMember(d => d.PictureUrl, o => o.MapFrom<ProductUrlResolver>());
-
-            CreateMap<Address, AddressDto>().ReverseMap(); // 177 since property name exact match no need columns
+            CreateMap<Core.Entity.Identity.Address, AddressDto>().ReverseMap(); // 177 since property name exact match no need columns
             CreateMap<CustomerBasketDto, CustomerBasket>(); // 182
             CreateMap<BasketItemDto, BasketItem>(); // 182
             CreateMap<AddressDto, Core.Entity.OrderAggregate.Address>(); // 214 for order addressdto need to map address of order aggregate

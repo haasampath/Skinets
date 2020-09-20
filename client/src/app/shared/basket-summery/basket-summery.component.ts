@@ -2,6 +2,7 @@ import { IBasket, IBasketItem } from 'src/app/shared/models/basket';
 import { BasketService } from './../../basket/basket.service';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IOrderItem } from '../models/order';
 
 @Component({
   selector: 'app-basket-summery',
@@ -9,16 +10,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./basket-summery.component.scss'],
 })
 export class BasketSummeryComponent implements OnInit {
-  basket$: Observable<IBasket>;
   @Output() decrement: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
   @Output() increment: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
   @Output() remove: EventEmitter<IBasketItem> = new EventEmitter<IBasketItem>();
   @Input() isBasket = true; // only add element for increment,decremet,delete when baskt component and not the checkou-review
+  @Input() items: IBasketItem[] | IOrderItem[] = []; // 253 // item can be from those any of type and id is mistmatch of tose classes
+  @Input() isOrder = false; // for styling purpose
 
-  constructor(private basketService: BasketService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.basket$ = this.basketService.basket$;
   }
 
   decrementItemQuantity(item: IBasketItem){

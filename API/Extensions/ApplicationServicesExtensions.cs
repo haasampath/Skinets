@@ -14,6 +14,7 @@ namespace API.Extensions
         {
             services.AddScoped<ITokenService, TokenService>(); // 172
             services.AddScoped<IOrderService, OrderService>(); // 212
+            services.AddScoped<IPaymentService, PaymentService>(); // 258
             services.AddScoped<IUnitOfWork, UnitOfWork>(); // 217
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>(); //v 137

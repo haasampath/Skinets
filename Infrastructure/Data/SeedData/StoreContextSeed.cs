@@ -55,7 +55,7 @@ namespace Infrastructure.Data.SeedData
                     await context.SaveChangesAsync();
                 }
 
-                if (!context.DeliveryMethods.Any()) { }
+                if (!context.DeliveryMethods.Any())
                 {
                     var dmData =
                     File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");

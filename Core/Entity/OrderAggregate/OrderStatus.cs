@@ -3,11 +3,12 @@ using System.Runtime.Serialization;
 namespace Core.Entity.OrderAggregate
 {
     public enum OrderStatus
-    {[EnumMember(Value="Pending")]
+    {
+        [EnumMember(Value = "Pending")]
         Pending,
-        [EnumMember(Value="Payment Received")]
+        [EnumMember(Value = "Payment Received")]
         PaymentRecevied,
-        [EnumMember(Value="Payment Failed")]
+        [EnumMember(Value = "Payment Failed")]
         PaymentFailed
     }
 }

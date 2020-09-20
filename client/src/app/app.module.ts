@@ -12,9 +12,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { ShopModule } from './shop/shop.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, OrdersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

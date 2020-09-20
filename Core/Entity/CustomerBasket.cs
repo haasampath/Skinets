@@ -15,5 +15,10 @@ namespace Core.Entity
  
         public string Id { get; set; }
         public List<BasketItem> Items { get; set; } = new List<BasketItem>(); // initialized basket items
+
+        public int? DeliveryMethodId {get; set; } //259
+        public string ClientSecret { get; set; }
+        public string PaymentIntentId { get; set; }
+        public decimal ShippingPrice { get; set; }
     }
 }
