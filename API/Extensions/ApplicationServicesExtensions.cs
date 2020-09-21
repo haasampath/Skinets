@@ -12,6 +12,7 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddSingleton<IResponseCacheService, ResponseCacheService>(); // 280 for active service to all the request
             services.AddScoped<ITokenService, TokenService>(); // 172
             services.AddScoped<IOrderService, OrderService>(); // 212
             services.AddScoped<IPaymentService, PaymentService>(); // 258

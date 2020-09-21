@@ -20,6 +20,10 @@ export class LoadingInterceptor implements HttpInterceptor {
       return next.handle(req); // 272 just move to next step
     }
 
+    if (req.method === 'DELETE') {
+      return next.handle(req); // 286
+    }
+
     if (req.url.includes('emailexists')) {
       // 202 is for small modification for mail exists
       // this.busyService.busy();

@@ -35,6 +35,7 @@ namespace API.Controllers
             _productBrandsRepo = productBrandsRepo;
         }
 
+        [Cache(600)]
         [HttpGet] // Pagination v 65
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productParams) // if class check for body but we sent as query for get so used "fromQuery"// v 64
         {
@@ -59,6 +60,7 @@ namespace API.Controllers
             // }).ToList();
         }
 
+        [Cache(600)]       
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)] // v 55
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -83,12 +85,14 @@ namespace API.Controllers
             // return await _productsRepo.GetByIdAsync(id);
         }
 
+        [Cache(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
             return Ok(await _productBrandsRepo.ListAllAsync());
         }
 
+        [Cache(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
